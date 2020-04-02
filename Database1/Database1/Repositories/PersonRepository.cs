@@ -18,6 +18,23 @@ namespace Database1.Repositories
             _context = new PersondbContext();
         }
 
+        /// <summary>
+        /// Find person by Id
+        /// SELECT * FROM PERSON WHERE Id = @id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Person Read(int id)
+        {
+            var person = _context.Person.FirstOrDefault(p=>p.Id == id);
+            return person;
+        }
+
+        /// <summary>
+        /// INSERT INTO PERSON (Name, Age) VALUES (newPerson.Name, newPerson.Age)
+        /// </summary>
+        /// <param name="newPerson"></param>
+        /// <returns></returns>
         Person IPersonRepository.Create(Person newPerson)
         {
             try
@@ -33,11 +50,17 @@ namespace Database1.Repositories
             }
         }
 
-        void IPersonRepository.Delete(long id)
+        void IPersonRepository.Delete(Person deletePerson)
         {
-            throw new NotImplementedException();
+            _context.Person.Remove(deletePerson);
+            _context.SaveChanges();
         }
 
+        /// <summary>
+        /// All data from Person
+        /// SELECT * FROM PERSON
+        /// </summary>
+        /// <returns></returns>
         List<Person> IPersonRepository.Read()
         {
             var persons = _context.Person.ToList();
@@ -46,7 +69,9 @@ namespace Database1.Repositories
 
         Person IPersonRepository.Update(Person updatePerson)
         {
-            throw new NotImplementedException();
+            _context.Person.Update(updatePerson);
+            _context.SaveChanges();
+            return updatePerson;
         }
     }
 }

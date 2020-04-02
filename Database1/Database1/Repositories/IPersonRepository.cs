@@ -10,7 +10,8 @@ namespace Database1.Repositories
         // CRUD
         Person Create(Person newPerson);
         List<Person> Read();
+        Person Read(int id);
         Person Update(Person updatePerson);
-        void Delete(long id);
+        void Delete(Person deletePerson);
     }
 }

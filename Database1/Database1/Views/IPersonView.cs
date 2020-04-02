@@ -8,5 +8,8 @@ namespace Database1.Views
     {
         void CreatePerson();
         void ReadAllData();
+        void ReadById();
+        void UpdatePerson();
+        void DeletePerson();
     }
 }

@@ -10,5 +10,8 @@ namespace Database1.Services
         //CRUD
         Person Create(Person newPerson);
         List<Person> Read();
+        Person Read(int id);
+        Person Update(int id, Person updatePerson);
+        void Delete(int id);
     }
 }

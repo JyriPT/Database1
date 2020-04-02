@@ -27,20 +27,19 @@ namespace Database1
                         msg = "\n----------------------------> \nPaina Enter jatkaaksesi!";
                         break;
                     case "R":
-                        //personView.Read(5002);
                         _personView.ReadAllData();
                         msg = "\n----------------------------> \nPaina Enter jatkaaksesi!";
                         break;
                     case "U":
-                        //personView.UpdatePerson();
+                        _personView.UpdatePerson();
                         msg = "\n---------------------------->! \nPaina Enter jatkaaksesi!";
                         break;
                     case "D":
-                        //personView.DeletePerson(5003);
+                        _personView.DeletePerson();
                         msg = "\n---------------------------->! \nPaina Enter jatkaaksesi!";
                         break;
                     case "R1":
-                        //personView.ReadByCity(); ;
+                        _personView.ReadById();
                         msg = "\n----------------------------> \nPaina Enter jatkaaksesi!";
                         break;
                     case "X":

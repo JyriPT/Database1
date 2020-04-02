@@ -21,13 +21,61 @@ namespace Database1.Views
             Console.WriteLine(newPerson.Name);
         }
 
+        public void DeletePerson()
+        {
+            Console.Write("Kenen tiedot poistetaan? Syötä id:");
+            var userInput = Console.ReadLine();
+
+            int id = int.Parse(userInput);
+
+            _personService.Delete(id);
+        }
+
         public void ReadAllData()
         {
             var persons = _personService.Read();
-            foreach (var p in persons)
+            PrintPersonData(persons);
+        }
+
+        public void ReadById()
+        {
+            Console.WriteLine("Syötä etsittävä id");
+            
+            if (int.TryParse(Console.ReadLine(), out int id ) == true)
             {
-                Console.WriteLine(p.Name);
+                var person = _personService.Read(id);
+                PrintPersonData(person);
             }
+        }
+
+        public void UpdatePerson()
+        {
+            Console.Write("Kenen tietoja muutetaan? Syötä id:");
+            var userInput = Console.ReadLine();
+
+            int id = int.Parse(userInput);
+
+            var person = _personService.Read(id);
+            person.Name = "Joku Jokunen";
+
+            var updatedPerson = _personService.Update(id, person);
+
+            PrintPersonData(updatedPerson);
+        }
+
+        private void PrintPersonData(List<Person> persons)
+        {
+            Console.WriteLine("ID\tNimi");
+            foreach (var person in persons)
+            {
+                Console.WriteLine($"{person.Id}\t{person.Name}");
+            }
+        }
+
+        private void PrintPersonData(Person person)
+        {
+            Console.WriteLine("ID\tNimi");
+            Console.WriteLine($"{person.Id}\t{person.Name}");
         }
     }
 }
