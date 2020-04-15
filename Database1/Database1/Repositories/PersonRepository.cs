@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace Database1.Repositories
 {
@@ -26,7 +27,10 @@ namespace Database1.Repositories
         /// <returns></returns>
         public Person Read(int id)
         {
-            var person = _context.Person.FirstOrDefault(p=>p.Id == id);
+            var person = _context
+                .Person
+                .Include(p=>p.Phone)
+                .FirstOrDefault(p=>p.Id == id);
             return person;
         }
 
@@ -63,7 +67,10 @@ namespace Database1.Repositories
         /// <returns></returns>
         List<Person> IPersonRepository.Read()
         {
-            var persons = _context.Person.ToList();
+            var persons = _context
+                .Person
+                .Include(p => p.Phone)
+                .ToList();
             return persons;
         }
 

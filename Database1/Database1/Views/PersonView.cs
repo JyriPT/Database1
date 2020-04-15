@@ -14,7 +14,17 @@ namespace Database1.Views
         public void CreatePerson()
         {
             Person newPerson = new Person();
-            newPerson.Name = "Testie Testington";
+            string input = string.Empty;
+
+            while (input == string.Empty)
+            {
+                Console.WriteLine("Anna henkilölle nimi:");
+                input = Console.ReadLine();
+            }
+
+            newPerson.Name = input;
+
+
 
             var createdPerson = _personService.Create(newPerson);
             Console.WriteLine("Person created successfully");
@@ -56,7 +66,11 @@ namespace Database1.Views
             int id = int.Parse(userInput);
 
             var person = _personService.Read(id);
-            person.Name = "Joku Jokunen";
+
+            Console.WriteLine("Anna henkilön uusi nimi:");
+            userInput = Console.ReadLine();
+
+            person.Name = userInput;
 
             var updatedPerson = _personService.Update(id, person);
 
@@ -69,6 +83,10 @@ namespace Database1.Views
             foreach (var person in persons)
             {
                 Console.WriteLine($"{person.Id}\t{person.Name}");
+                foreach (var phone in person.Phone)
+                {
+                    Console.WriteLine($"{phone.Type}: {phone.Number}");
+                }
             }
         }
 
@@ -76,6 +94,10 @@ namespace Database1.Views
         {
             Console.WriteLine("ID\tNimi");
             Console.WriteLine($"{person.Id}\t{person.Name}");
+            foreach (var phone in person.Phone)
+            {
+                Console.WriteLine($"{phone.Type}: {phone.Number}");
+            }
         }
     }
 }

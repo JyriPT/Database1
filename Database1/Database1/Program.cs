@@ -62,10 +62,10 @@ namespace Database1
         {
             Console.WriteLine("Tietokannan käsittely esimerkki!");
             Console.WriteLine("[C] Lisää tietokantaan uusi tietue");
-            Console.WriteLine("[R] Lue tietokannasta tietoja");
+            Console.WriteLine("[R] Lue kaiki tietokannan tiedot");
             Console.WriteLine("[U] Päivitä henkilön tiedot");
             Console.WriteLine("[D] Poista henkilö tietokannasta");
-            Console.WriteLine("[R1] Hae tiedot kaupungista");
+            Console.WriteLine("[R1] Etsi henkilö Id:n persuteella");
             Console.WriteLine("[X] Lopeta ohjelmansuoritus");
             Console.WriteLine();
             Console.Write("Valitse mitä tehdään: ");
